@@ -1,0 +1,117 @@
+@font-face { font-family: above; src: url("../css/ABOVE/ABOVE\ \ -\ PERSONAL\ USE\ ONLY.ttf");} 
+@font-face { font-family: stenha; src: url("../css/stenha/Stenha.otf");} 
+@font-face { font-family: lucky; src: url("../css/lucky_typewriter/LUCKY\ TYPEWRITER.ttf");} 
+
+body {
+    background: url("../images/HŽ_6111_serie.jpg");
+
+}
+.tron {
+    background-color: rgb(63,69,75);
+    border-radius: 5px;
+    border: 1px solid rgb(63,69,75);
+}
+
+.logo {
+    width:100px;
+    height:100px;
+    position: absolute;
+}
+
+h1{
+    font-family: above;
+    color: white;
+    margin-left: 30%;
+    margin-bottom:90px;
+}
+ 
+.currentTime{
+    font-family: stenha;
+    font-size: 60px;
+    color:red;
+    position: absolute;
+    margin-left:40%;
+    margin-top:60px;
+    border: 1px solid black;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.displayResults {
+    width:100%;
+    border:1px solid rgb(63,69,75);
+    border-radius: 5px;
+}
+.headingDisplay {
+    color: white;
+    background-color: rgb(63,69,75);
+    font-size: 20px;
+    text-align: center;
+}
+#largeText {
+    font-family: above;
+    font-size: 30px;
+}
+#tableTitle {
+    font-family: stenha;
+}
+.trainInfo {
+    background-color: rgb(52,59,64);
+    font-family: lucky;
+}
+
+
+#train {
+    margin:20px 20px 20px 40%;
+    width:20%;
+    height:20%;
+}
+ #train:hover{
+     box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+    cursor: pointer;
+}
+
+h5 {
+    text-align: center;
+    font-family: above;
+    font-size: 20px;
+}
+.application {
+    background-color: rgb(63,69,75);
+    width:800px;
+    margin-left: 10%;
+    margin-top: 40px;
+    height:550px;
+    position: absolute;
+    color: white;
+    z-index: 1;
+    border:1px solid white;
+    -moz-box-shadow:    3px 3px 5px 6px rgb(68, 68, 68);
+    -webkit-box-shadow: 3px 3px 5px 6px rgb(68, 68, 68);
+    box-shadow:         3px 3px 5px 6px rgb(68, 68, 68);
+    padding: 20px;
+    font-family: lucky;
+}
+input {
+    width:100%;
+}
+#submitBtn {
+    float:right;
+    position: relative;
+    background-color: red;
+    border: none;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+}
+h4{
+    text-align: center;
+}
+#btnClose {
+    float:right;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
