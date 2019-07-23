@@ -15,12 +15,14 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 //global variables - keep updating
-var nextTrainTime;
+var nextTrainTime = 0;
 var frequency = 0;
-var timeChange = [];
+var name = "";
+var destination="";
+var frequency = 0;
 
 //create a variable for moment()
-var time = moment().format('HH:mm:ss');
+var time = moment().format('HH:mm');
 $(".application").hide();
 $(".currentTime").text(time);
 
@@ -44,18 +46,18 @@ $("#submitBtn").on("click", function () {
 
 
     //collect input values by the user for following
-    var name = $("#userName").val().trim();
-    var destination = $("#userDestination").val().trim();
-    var firstTrainTime = moment($("#userArrival").val().trim(), "HH:mm").subtract(10, "years").format("X");
+    name = $("#userName").val().trim();
+    destination = $("#userDestination").val().trim();
+    firstTrainTime = moment($("#userArrival").val().trim(), "HH:mm").subtract(10, "years").format("X");
     frequency = $("#userFrequency").val().trim();
     //create a new variable for time
-    var nextTrainTime;
+    nextTrainTime;
 
     console.log(firstTrainTime);
     
     //if user leaves all fields blank then close application. 
     if (name === "" || destination === "" || firstTrainTime === "" || frequency === "") {
-        alert("Information invalid. Please re-enter results.");
+        alert("Information invalid. You're train can not be scheduled at this time.");
 
     }
     else {
@@ -64,7 +66,10 @@ $("#submitBtn").on("click", function () {
         destination = destination.toUpperCase();
         frequency = frequency.toUpperCase();
         
-        
+        console.log(name);
+
+
+
         //now find first train appearance from user input, make sure that it is after current time.
         var formatTime = moment().min(moment(firstTrainTime, "HH:mm"));
         console.log(formatTime.format("HH:mm"));
@@ -77,39 +82,54 @@ $("#submitBtn").on("click", function () {
         database.ref().push({
             trainName: name,
             trainDestination: destination,
-            trainArrival: arrival,
+            trainArrival: firstTrainTime,
             trainFrequency: frequency,
         });
+
+        
         
         //clear value for new users
         $("#userName").val("");
         $("#userDestination").val("");
         $("#userArrival").val("");
         $("#userFrequency").val("");
-
+        
         return false;
+        console.log(name)
     }
 });
 
 database.ref().on("child_added", function(snapshot){
-    var name = snapshot.val().name;
-    var destination = snapshot.val().destination;
-    var frequency = snapshot.val().frequency;
-    var firstTrainTime = snapshot.val().firstTrainTime;
+    var name = snapshot.val().trainName;
+    var destination = snapshot.val().trainDestination;
+    var frequency = snapshot.val().trainFrequency;
+    var trainTime = snapshot.val().trainArrival;
 
-    var remainder = moment().diff(moment.unix(firstTrainTime), "minutes")%frequency;
+    console.log("train",trainTime);
+
+    var remainder = moment().diff(moment().unix(trainTime), "minutes") % frequency;
     var minutes = frequency - remainder;
-    var arrival = moment().add(minutes, "m").format("hh:mm A");
-
+    var arrival = moment().add(minutes, "m").format("HH:mm");
+    
+    if (minutes ===1){
+        alert("Final Boarding Call for "+ name);
+    }
     //append following information to new row in table
     newDiv = $("tbody").append("<tr>");
     newDiv.append("<td id='name'>" + name + "</td>");
     newDiv.append("<td id='destination'>" + destination + "</td>");
-    newDiv.append("<td id='arrival'>" + arrival + "</td>");
     newDiv.append("<td id='frequency'>" + frequency + "</td>");
+    newDiv.append("<td id='arrival'>" + arrival + "</td>");
+    newDiv.append("<td id='minutes'>"+ minutes + "</td>");
+
 })
 
 
+currentTime();
+
+setInterval(function() {
+  window.location.reload();
+}, 60000);
 
 
 //opt out of completing application, information will not be saved
