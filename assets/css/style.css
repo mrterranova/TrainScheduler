@@ -42,24 +42,27 @@ h1{
     border:1px solid rgb(63,69,75);
     border-radius: 5px;
 }
+
 .headingDisplay {
     color: white;
     background-color: rgb(63,69,75);
     font-size: 20px;
     text-align: center;
 }
+
 #largeText {
     font-family: above;
     font-size: 30px;
 }
+
 #tableTitle {
     font-family: stenha;
 }
+
 .trainInfo {
     background-color: rgb(52,59,64);
     font-family: lucky;
 }
-
 
 #train {
     margin:20px 20px 20px 40%;
