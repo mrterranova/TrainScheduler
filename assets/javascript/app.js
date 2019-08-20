@@ -101,6 +101,7 @@ database.ref().on("child_added", function(snapshot){
     var trainTime = snapshot.val().trainArrival;
     var trainTimeArray = trainTime.split(":");
     
+//moment.js
     var firstTrainTimeToday = moment().hour(trainTimeArray[0]).minutes(trainTimeArray[1]);
     console.log("firstTrainTimeToday", firstTrainTimeToday);
 
