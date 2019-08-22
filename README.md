@@ -40,3 +40,5 @@ My Website found here: https://mrterranova.github.io/TrainScheduler/
 * Minute updates on trains arriving.
 
 * Separate application module for adding train.
+
+* View complete application by clicking on the train button at the bottom.
