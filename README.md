@@ -35,3 +35,8 @@ My Website found here: https://mrterranova.github.io/TrainScheduler/
 
 ![train homework](Train_Time_Image.png)
 
+* My train scheduler contains active clock updating time.
+
+* Minute updates on trains arriving.
+
+* Separate application module for adding train.
